@@ -2,51 +2,41 @@ import streamlit as st
 import time
 from datetime import datetime
 
-st.set_page_config(page_title="6 Mesi di Noi", layout="wide")
+st.set_page_config(page_title="6 Mesi di Noi", layout="centered")
 
-# CSS: Sfondo fisso, ingrandimento elementi, scroll disattivato
+# CSS: Dimensioni perfette per mobile, stile pulito
 st.markdown("""
     <style>
     @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap');
     
-    /* Blocca completamente lo scroll */
-    body, html, .stApp { 
-        background-color: #ffdde1 !important; 
-        overflow: hidden !important; 
-        height: 100vh !important;
-        width: 100vw !important;
-    }
-    
-    /* Nasconde il menu di Streamlit per guadagnare spazio */
-    #MainMenu {visibility: hidden;}
-    footer {visibility: hidden;}
+    .stApp { background-color: #ffdde1 !important; }
     
     h1 { 
         font-family: 'Playfair Display', serif; 
         color: #8b0000 !important; 
         text-align: center; 
-        font-size: 3.5rem !important;
-        margin-top: 10px !important;
+        font-size: 2.2rem !important;
+        margin: 10px 0 !important;
     }
     .subtitle { 
         font-family: 'Playfair Display', serif; 
         color: #8b0000 !important; 
         text-align: center; 
-        font-size: 2rem !important;
-        margin-bottom: 20px !important;
+        font-size: 1.3rem !important;
+        margin-bottom: 15px !important;
     }
     .timer-box { 
         background-color: #ffffff; 
-        padding: 20px !important; 
-        border-radius: 20px; 
+        padding: 12px !important; 
+        border-radius: 12px; 
         text-align: center; 
-        margin: 10px auto !important; 
+        margin: 6px auto !important; 
         color: #8b0000; 
         font-family: 'Playfair Display', serif;
-        font-size: 2.2rem !important;
+        font-size: 1.5rem !important;
         font-weight: bold;
-        border: 3px solid #8b0000;
-        width: 90%;
+        border: 2px solid #8b0000;
+        width: 85%;
     }
     </style>
 """, unsafe_allow_html=True)
@@ -68,7 +58,7 @@ secondi_totali = int(delta.total_seconds())
 st.markdown("<h1>6 Mesi di Noi</h1>", unsafe_allow_html=True)
 st.markdown("<div class='subtitle'>Emanuele & Mia, per sempre</div>", unsafe_allow_html=True)
 
-# Timer Verticale in grande
+# Timer Verticale
 st.markdown(f"<div class='timer-box'>Anni: {anni}</div>", unsafe_allow_html=True)
 st.markdown(f"<div class='timer-box'>Mesi: {mesi_totali}</div>", unsafe_allow_html=True)
 st.markdown(f"<div class='timer-box'>Settimane: {settimane_totali}</div>", unsafe_allow_html=True)
