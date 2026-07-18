@@ -1,7 +1,6 @@
 import streamlit as st
 import time
 from datetime import datetime
-from dateutil.relativedelta import relativedelta
 
 st.set_page_config(page_title="6 Mesi di Noi", layout="centered")
 
@@ -30,22 +29,30 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# Logica
+# Data di riferimento
 start = datetime(2026, 1, 18, 23, 12, 0)
 now = datetime.now()
-diff = relativedelta(now, start)
+delta = now - start
+
+# Calcoli indipendenti per ogni riga
+anni = (now.year - start.year) - ((now.month, now.day) < (start.month, start.day))
+mesi_totali = (now.year - start.year) * 12 + (now.month - start.month) - (now.day < start.day)
+settimane_totali = delta.days // 7
+giorni_totali = delta.days
+ore_totali = int(delta.total_seconds() // 3600)
+secondi_totali = int(delta.total_seconds())
 
 # Interfaccia
 st.markdown("<h1>6 Mesi di Noi</h1>", unsafe_allow_html=True)
 st.markdown("<div class='subtitle'>Emanuele & Mia, per sempre</div>", unsafe_allow_html=True)
 
-# Timer Verticale
-st.markdown(f"<div class='timer-box'>Anni: {diff.years}</div>", unsafe_allow_html=True)
-st.markdown(f"<div class='timer-box'>Mesi: {diff.months}</div>", unsafe_allow_html=True)
-st.markdown(f"<div class='timer-box'>Settimane: {diff.weeks}</div>", unsafe_allow_html=True)
-st.markdown(f"<div class='timer-box'>Giorni: {diff.days}</div>", unsafe_allow_html=True)
-st.markdown(f"<div class='timer-box'>Ore: {diff.hours}</div>", unsafe_allow_html=True)
-st.markdown(f"<div class='timer-box'>Secondi: {diff.seconds}</div>", unsafe_allow_html=True)
+# Timer Verticale con conteggi indipendenti
+st.markdown(f"<div class='timer-box'>Anni: {anni}</div>", unsafe_allow_html=True)
+st.markdown(f"<div class='timer-box'>Mesi: {mesi_totali}</div>", unsafe_allow_html=True)
+st.markdown(f"<div class='timer-box'>Settimane: {settimane_totali}</div>", unsafe_allow_html=True)
+st.markdown(f"<div class='timer-box'>Giorni: {giorni_totali}</div>", unsafe_allow_html=True)
+st.markdown(f"<div class='timer-box'>Ore: {ore_totali}</div>", unsafe_allow_html=True)
+st.markdown(f"<div class='timer-box'>Secondi: {secondi_totali:,}</div>", unsafe_allow_html=True)
 
 time.sleep(1)
 st.rerun()
